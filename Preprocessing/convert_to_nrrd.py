@@ -1,6 +1,6 @@
 import os
 
-''' NOTE: Thess functions will run in Slicer python interactor.
+''' NOTE:  functions will run in Slicer python interactor.
 NOTE: Make sure that the following directories are consistent with settings
 file.
 '''
