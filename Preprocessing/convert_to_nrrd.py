@@ -22,7 +22,7 @@ def dicom_to_nrrd(dicom_root, intermediate_folder, excluded_patients):
     start_patient = 0
     
     for patient_folder in patient_folders:
-        print patient_folder 
+        print(patient_folder)
         patient_number = int(patient_folder.split('-')[1])
         if patient_number > start_patient:
             patient_folder_path = os.path.join(dicom_root, patient_folder)
@@ -31,12 +31,12 @@ def dicom_to_nrrd(dicom_root, intermediate_folder, excluded_patients):
                 study_folder = study_folders[0]
                 study_folder_path = os.path.join(patient_folder_path, study_folder)
                 series_folders = sorted(os.listdir(study_folder_path))
-                print patient_folder, len(series_folders)
+                print(patient_folder, len(series_folders))
             elif len(study_folders) > 1:
-                print "patient has more than one studies: {}".format(patient_folder)
-                print "It was not added to the studies collection."
+                print("patient has more than one studies: {}".format(patient_folder))
+                print("It was not added to the studies collection.")
             else:
-                print "no study foler for patient:{}".format(patient_folder)
+                print("no study foler for patient:{}".format(patient_folder))
             for series_folder in series_folders:
                 series_folder_path = os.path.join(study_folder_path, series_folder)
                 file_names = [os.path.join(series_folder_path, file_name) for file_name in os.listdir(series_folder_path)]
@@ -54,7 +54,7 @@ def dicom_to_nrrd(dicom_root, intermediate_folder, excluded_patients):
                     # Load the dicom data
                     #
                     if any(description in series_description for description in required_serires_descriptions):
-                        print 'loading:', series_description
+                        print('loading:', series_description)
                         volume = plugin.load(loadables[0])
                         volume_name = series_description + '_' + series_number
                         volume.SetName(volume_name)
@@ -79,7 +79,7 @@ def ktrans_to_nrrd(ktrans_root, intermediate_folder, excluded_patients):
 
     start_patient = 0
     for patient_folder in patient_folders:
-        print patient_folder 
+        print(patient_folder)
         if patient_number > start_patient:
             ktrans_path = ktrans_root + patient_folder + '/' + patient_folder + '-Ktrans.mhd'
             loadVolume(ktrans_path)
